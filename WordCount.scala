@@ -8,6 +8,7 @@ import java.io._
 
 object WordCount {
   def main(args: Array[String]): Unit = {
+    val start = System.currentTimeMillis()
     val conf = new SparkConf()
       .setAppName("SelectTopUsers")
       .set("spark.executor.memory", "6g")
@@ -77,6 +78,8 @@ object WordCount {
     pw.close
 
     sc.stop()
+    val elapsed = System.currentTimeMillis() - start
+    println ("elapsed time in milliseconds " + elapsed)
   }
 
   def isEmail(item: String): Boolean = {
